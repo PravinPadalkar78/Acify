@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { useOutletContext } from "react-router";
+import { useLocation, useOutletContext } from "react-router";
 
 export default function EntryForm() {
   const [dataList, setDataList, data, setData] = useOutletContext();
   const [error, setError] = useState({});
+  const updating = useLocation()
 
+  if(updating.state)
+  {
+    setData(updating.state)
+  }
   const validate = (formData) => {
     let errorData = {};
     const validationConfig = {
