@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.content-table td,th{
+    border: 1px solid;
+    padding: 8px 4px;
+    min-width: min-content;
+}
+.table-head-cell{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 4px;
+    
+}
+.content-table th{
+    background-color: rgb(204, 200, 241);
+    
+}
+.content-table tr:nth-child(even)
+{
+    background-color: rgb(183, 253, 237);
+}
+.content-table tr:hover{
+    background-color: rgba(237, 210, 56, 0.297);
+}
