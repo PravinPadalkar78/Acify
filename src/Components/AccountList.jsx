@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useOutletContext } from "react-router";
+import { CSVLink, CSVDownload } from "react-csv";
 
 export default function AccountList() {
   const [dataList, setDataList, data, setData] = useOutletContext();
@@ -13,9 +14,12 @@ export default function AccountList() {
     );
   };
   return (
-    <section className="mx-4 pt-6">
+    <section className="mx-2 md:mx-4 pt-6">
       <p className="my- pb-1 text-2xl">AccountLists</p>
-      <p className="opacity-80">Here's the List of your Accounts</p>
+      <div className="flex justify-between">
+        <p className="opacity-80">Here's the List of your Accounts</p>
+        <CSVLink className="xl:mr-12 bg-green-500 px-2 py-1 rounded-md" data={dataList}><span className="hidden sm:inline">Download </span><i class="fa fa-download" aria-hidden="true"></i></CSVLink>
+      </div>
       <div className="shadow-md mt-4 overflow-auto">
         <table className="content-table mx-2 mb-8">
           <thead>
@@ -88,13 +92,28 @@ export default function AccountList() {
                     <td className="whitespace-nowrap">{phoneNo}</td>
                     <td className="whitespace-nowrap">{website}</td>
                     <td className="whitespace-nowrap">{industry}</td>
-                    <td className="whitespace-nowrap">{accountStatus}</td>
+                    <td className="whitespace-nowrap text-center">
+                      <p
+                        className={` w-24 mx-auto py-1 text-gray-800 rounded-md cursor-pointer ${accountStatus == "Active" ? "bg-lime-300" : "bg-red-300"} `}
+                      >
+                        {accountStatus}
+                      </p>
+                    </td>
                     <td className="whitespace-nowrap">{remark}</td>
                     <td>
-                      <Link to="entryform" state={{accountName,email,phoneNo,website,industry,accountStatus,remark}}>
-                        <i
-                          className="mx-2 text-violet-800 hover:text-violet-900 cursor-pointer fa-edit fas"
-                        ></i>
+                      <Link
+                        to="entryform"
+                        state={{
+                          accountName,
+                          email,
+                          phoneNo,
+                          website,
+                          industry,
+                          accountStatus,
+                          remark,
+                        }}
+                      >
+                        <i className="mx-2 text-violet-800 hover:text-violet-900 cursor-pointer fa-edit fas"></i>
                       </Link>
                       <i
                         className="mx-2 text-violet-800 hover:text-violet-900 cursor-pointer fa fa-trash"
