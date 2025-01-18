@@ -12,7 +12,6 @@ export default function AccountList() {
       })
     );
   };
-  console.log(dataList);
   return (
     <section className="mx-4 pt-6">
       <p className="my- pb-1 text-2xl">AccountLists</p>

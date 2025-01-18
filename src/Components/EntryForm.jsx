@@ -26,12 +26,14 @@ export default function EntryForm() {
       ],
       phoneNo: [
         { required: true, msg: "Phone Number cannot be empty" },
-        { length: 10, msg: "Please Enter a Valid Mobile Number" },
+        { pattern: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/, 
+          msg: "Please Enter a Valid Mobile Number",
+        },
       ],
       website: [
         { required: true, msg: "website cannot be empty" },
         {
-          pattern: /[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}/,
+          pattern:/(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/,
           msg: "Please Enter a Valid email",
         },
       ],
@@ -49,6 +51,10 @@ export default function EntryForm() {
         if (rule.length && value.length < rule.length) {
           errorData[key] = rule.msg;
           return true;
+        }
+        if(rule.pattern)
+        {
+          console.log(rule.pattern.test(value))
         }
       });
     });
