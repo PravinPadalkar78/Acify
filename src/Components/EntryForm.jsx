@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useLocation, useOutletContext } from "react-router";
+import Input from "./Input";
+import Select from "./Select";
+import RadioInput from "./RadioInput";
 
 export default function EntryForm() {
   const [dataList, setDataList, data, setData] = useOutletContext();
@@ -89,128 +92,13 @@ export default function EntryForm() {
     <main className="mx-4">
       <p className="my-4 border-l font-semibold text-2xl">User Details</p>
       <form className="bg-slate-200 shadow-md mb-4 rounded">
-        <div className="px-4 py-1 pt-4">
-          <label className="block mb-1 text-md" htmlFor="accountName">
-            Account Name:
-          </label>
-          <input
-            type="text"
-            id="accountName"
-            name="accountName"
-            value={data.accountName}
-            onChange={(e) => handleChange(e)}
-            className="px-2 w-full h-7 outline-none"
-            placeholder="Enter The Account Holder Name"
-          ></input>
-          <p className="mb-2 px-1 text-red-700 text-sm font">
-            {error.accountName}
-          </p>
-        </div>
-        <div className="mt-1 px-4 py-2">
-          <label className="block mb-1 text-md" htmlFor="accountName">
-            Email:
-          </label>
-          <input
-            id="email"
-            className="px-2 w-full h-7 outline-none"
-            type="email"
-            placeholder="Enter The Account Holder Email"
-            name="email"
-            value={data.email}
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <p className="mb-2 px-1 text-red-700 text-sm font">{error.email}</p>
-        </div>
-        <div className="px-4 py-2">
-          <label className="block mb-1 text-md" htmlFor="phoneNo">
-            Phone No:
-          </label>
-          <input
-            type="tel"
-            id="phoneNo"
-            className="px-2 w-full h-7 outline-none"
-            placeholder="Enter The Account Holder Phone No"
-            name="phoneNo"
-            value={data.phoneNo}
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <p className="mb-2 px-1 text-red-700 text-sm font">{error.phoneNo}</p>
-        </div>
-        <div className="px-4 py-2">
-          <label className="block mb-1 text-md" htmlFor="website">
-            Website URL:
-          </label>
-          <input
-            type="url"
-            id="website"
-            className="px-2 w-full h-7 outline-none"
-            placeholder="Enter The website URL"
-            name="website"
-            value={data.website}
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <p className="mb-2 px-1 text-red-700 text-sm font">{error.website}</p>
-        </div>
-        <div className="px-4 py-2">
-          <label className="block mb-1 text-md" htmlFor="accountName">
-            Industry:
-          </label>
-          {/* <input type='text' id='accountName' className='px-2 w-full h-7 outline-none' placeholder='Enter The Account Holder Name'></input> */}
-          <select
-            className="px-1 w-full h-7 outline-none"
-            name="industry"
-            value={data.industry}
-            onChange={(e) => handleChange(e)}
-          >
-            <option hidden value="">
-              Select the Industry
-            </option>
-            <option value="technology">Technology</option>
-            <option value="energy">Energy</option>
-            <option value="construction">Construction</option>
-            <option value="healthcare">Healthcare</option>
-            <option value="retail">Retail</option>
-            <option value="logistics">Logistics</option>
-            <option value="education">Education</option>
-          </select>
-          <p className="mb-2 px-1 text-red-700 text-sm font">
-            {error.industry}
-          </p>
-        </div>
-        <div className="px-4 py-2">
-          <label className="block mb-1 text-md" htmlFor="accountName">
-            Account Status:
-          </label>
-          <div className="inline-block p-1">
-            <input
-              type="radio"
-              id="active"
-              className="px-2 w-4 h-4 outline-none"
-              name="accountStatus"
-              value="active"
-              onChange={(e) => handleChange(e)}
-            ></input>
-            <label htmlFor="active" className="align-top mx-1">
-              Active
-            </label>
-          </div>
-          <div className="inline-block p-1">
-            <input
-              type="radio"
-              id="inactive"
-              className="px-2 w-4 h-4 outline-none"
-              name="accountStatus"
-              value="inactive"
-              onChange={(e) => handleChange(e)}
-            ></input>
-            <label htmlFor="inactive" className="align-top mx-1">
-              InActive
-            </label>
-          </div>
-          <p className="mb-2 px-1 text-red-700 text-sm font">
-            {error.accountStatus}
-          </p>
-        </div>
+        <Input  title="Name:"  id="accountName" name="accountName" value={data.accountName} handleChange={handleChange} msg={error.accountName} placeholder="Enter The Account Holder Name"></Input>
+        <Input  title="Email:"  id="email" name="email" value={data.email} handleChange={handleChange} msg={error.email} placeholder="Enter The Email"></Input>
+        <Input  title="Phone No"  id="phoneNo" name="phoneNo" value={data.phoneNo} handleChange={handleChange} msg={error.phoneNo} placeholder="Enter The Account Holder phoneNo"></Input>
+        <Input title="Website URL" id="website" name="website" value={data.website} handleChange={handleChange} msg={error.website} placeholder="Enter The Account Holder website"></Input>
+        <Select title="Industry:" id="industry" name="industry" value={data.industry} handleChange={handleChange} defaultOption="Select the Industry" options={['technology','energy','construction','healthcare','retail','logistics','education']} msg={error.industry}/>
+        <RadioInput title="Account Status:"  id="active" name="accountStatus"  handleChange={handleChange} msg={error.accountStatus} placeholder="Enter The Account Holder Name"/>
+       
         <div className="px-4 py-2">
           <label className="block mb-1 text-md" htmlFor="remark">
             Remark:

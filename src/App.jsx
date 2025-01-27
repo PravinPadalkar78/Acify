@@ -17,7 +17,7 @@ function App() {
     remark:""
   })
   return (
-    <div className="mx-auto max-w-[1400px]">
+    <div className="mx-auto max-w-[1400px] h-screen">
       <Header />
       <Outlet context={[dataList, setDataList,data,setData]} />
     </div>

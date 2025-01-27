@@ -15,57 +15,31 @@ export default function AccountList() {
   };
   return (
     <section className="mx-2 md:mx-4 pt-6">
-      <p className="my- pb-1 text-2xl">AccountLists</p>
+      <p className=" pb-1 font-semibold text-2xl">AccountLists</p>
       <div className="flex justify-between">
         <p className="opacity-80">Here's the List of your Accounts</p>
-        <CSVLink className="xl:mr-12 bg-green-500 px-2 py-1 rounded-md" data={dataList}><span className="hidden sm:inline">Download </span><i class="fa fa-download" aria-hidden="true"></i></CSVLink>
+        <CSVLink
+          className="xl:mr-12 bg-green-500 px-2 py-1 rounded-md"
+          data={dataList}
+        >
+          <span className="hidden sm:inline">Download </span>
+          <i className="fa fa-download" aria-hidden="true"></i>
+        </CSVLink>
       </div>
       <div className="shadow-md mt-4 overflow-auto">
         <table className="content-table mx-2 mb-8">
           <thead>
             <tr>
-              <th>
-                <div className="table-head-cell">
-                  <span>AccountName</span>
-                  <i className="fa-ellipsis-v fas cursor-pointer"></i>
-                </div>
-              </th>
-              <th>
-                <div className="table-head-cell">
-                  <span>Email</span>
-                  <i className="fa-ellipsis-v fas cursor-pointer"></i>
-                </div>
-              </th>
-              <th>
-                <div className="table-head-cell">
-                  <span>Phone No.</span>
-                  <i className="fa-ellipsis-v fas cursor-pointer"></i>
-                </div>
-              </th>
-              <th>
-                <div className="table-head-cell">
-                  <span>Website</span>
-                  <i className="fa-ellipsis-v fas cursor-pointer"></i>
-                </div>
-              </th>
-              <th>
-                <div className="table-head-cell">
-                  <span>Industry</span>
-                  <i className="fa-ellipsis-v fas cursor-pointer"></i>
-                </div>
-              </th>
-              <th>
-                <div className="table-head-cell">
-                  <span>Account_Status</span>
-                  <i className="fa-ellipsis-v fas cursor-pointer"></i>
-                </div>
-              </th>
-              <th>
-                <div className="table-head-cell">
-                  <span>Remark</span>
-                  <i className="fa-ellipsis-v fas cursor-pointer"></i>
-                </div>
-              </th>
+              {Object.keys(dataList[0]).map((head,i) => {
+                return (
+                  <th key={i}>
+                    <div className="table-head-cell capitalize">
+                      <span>{head}</span>
+                      <i className="fa-ellipsis-v fas cursor-pointer"></i>
+                    </div>
+                  </th>
+                );
+              })}
               <th>
                 <div className="table-head-cell">
                   <span>Action</span>
@@ -76,15 +50,7 @@ export default function AccountList() {
           </thead>
           <tbody>
             {dataList.map(
-              ({
-                accountName,
-                email,
-                phoneNo,
-                website,
-                industry,
-                accountStatus,
-                remark,
-              }) => {
+              ({accountName,email,phoneNo,website,industry,accountStatus,remark,}) => {
                 return (
                   <tr key={email}>
                     <td className="whitespace-nowrap">{accountName}</td>

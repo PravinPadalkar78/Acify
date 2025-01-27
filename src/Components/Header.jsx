@@ -5,11 +5,11 @@ import { Link } from "react-router";
 export default function Header() {
   return (
     <div className="flex justify-between items-center bg-gray-50 shadow-md px-4 md:px-8 py-2 md:py-4">
-      <div className="flex gap-4">
+      <div className="flex gap-1 md:gap-4">
         <Link to="/">
           <img className="min-w-10" src={viteLogo} alt="logo" />
         </Link>
-        <Link to="" className="text-3xl text-indigo-400">
+        <Link to="" className="text-2xl md:text-3xl text-indigo-400">
           <h1>Actify</h1>
         </Link>
       </div>
@@ -25,6 +25,12 @@ export default function Header() {
           className="bg-sky-200 hover:bg-sky-300 px-1 md:px-2 py-1 rounded-sm cursor-pointer"
         >
           EntryForm
+        </Link>
+        <Link
+          to="login"
+          className="bg-sky-200 hover:bg-sky-300 px-1 md:px-2 py-1 rounded-sm cursor-pointer"
+        >
+          Login
         </Link>
       </div>
     </div>
